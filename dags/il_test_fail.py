@@ -17,9 +17,12 @@ with DAG(
         "depends_on_past": False,
         "retries": 0,
         "retry_delay": timedelta(minutes=5),
-        "owner": "il"
+        "owner": "il",
+        "email_on_failure": True,
+        "email_on_retry": False,
+        "email": ["ivan.lo@amidas.com.hk"]
     },
-    description="A simple tutorial DAG",
+    description="DAG testing for SES",
     start_date=datetime(2021, 1, 1),
     catchup=False,
     on_failure_callback=il_failure_callback(),
