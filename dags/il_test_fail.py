@@ -4,9 +4,9 @@ from airflow.operators.python_operator import PythonOperator
 from datetime import datetime, timedelta
 from textwrap import dedent
 
-def il_failure_callback(context: Context):
+def il_failure_callback():
     try:
-        print(f'{context["dag"].dag_id} failed')
+        print('-------------- tasked failed --------------')
     except Exception as e:
         raise Exception
 
