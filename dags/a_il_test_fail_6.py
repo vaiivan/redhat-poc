@@ -1,10 +1,7 @@
 from airflow import DAG
-from airflow.operators.python_operator import PythonOperator
-from airflow.operators.email_operator import EmailOperator
 from airflow.operators.python_operator import PythonVirtualenvOperator
-from airflow.providers.amazon.aws.hooks.ses import SESHook
-from datetime import datetime, timedelta
-from airflow.utils.email import send_email_smtp
+from airflow.operators.email_operator import EmailOperator
+from datetime import datetime
 
 def send_email_ses():
     import boto3
