@@ -15,10 +15,10 @@ def send_email_ses():
         aws_secret_access_key=credentials.secret_key,
     )
     response = ses.send_email(
-        Source="your-verified-email@example.com",
+        Source="ivan.lo@amidas.com.hk",
         Destination={
             'ToAddresses': [
-                "recipient@example.com",
+                "loyanngai@gmail.com",
             ],
         },
         Message={
