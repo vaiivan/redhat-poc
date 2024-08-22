@@ -4,7 +4,7 @@ from airflow.operators.python_operator import PythonOperator
 from datetime import datetime, timedelta
 from textwrap import dedent
 
-def task_failure_alert():
+def task_failure_alert(context):
     print(f"Task has failed, task_instance_key_str:---------------------")
 
 
