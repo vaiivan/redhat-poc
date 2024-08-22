@@ -5,22 +5,36 @@ from datetime import datetime, timedelta
 from textwrap import dedent
 from airflow.operators.email_operator import EmailOperator
 from airflow.contrib.operators.sns_publish_operator import SnsPublishOperator
+from airflow.providers.amazon.aws.notifications.sns import send_sns_notification
+# import boto3
+
+# client = boto3.client('sns')
 
 sns_topic_arn = "arn:aws:sns:ap-east-1:695314914535:airflow-sns-tpoic"
+
+from airflow.providers.amazon.aws.notifications.sns import send_sns_notification
+
+dag_failure_sns_notification = send_sns_notification(
+    aws_conn_id="aws_default",
+    region_name="ap-east-1",
+    message="The DAG {{ dag.dag_id }} failed",
+    target_arn=sns_topic_arn,
+)
+
 
 def task_failure_alert(context):
     print(f"Task has failed, task_instance_key_str:---------------------")
 
 
-def dag_check_SNS(context):
+# def dag_check_SNS(context):
 
-    sns = SnsPublishOperator(
-        task_id="check_list",
-        target_arn=sns_topic_arn,
-        subject=f"testing-subject{context['task_instance_key_str']}",
-        message="testing-content",
-    )
-    sns.execute(context)
+#     sns = SnsPublishOperator(
+#         task_id="check_list",
+#         target_arn=sns_topic_arn,
+#         subject=f"testing-subject{context['task_instance_key_str']}",
+#         message="testing-content",
+#     )
+#     sns.execute(context)
 
 
 with DAG(
@@ -36,7 +50,7 @@ with DAG(
         to="loyanngai@hotmail.com",
         subject="Test from SES",
         html_content="Trying to send an email from airflow through SES.",
-        on_failure_callback=dag_check_SNS
+        on_failure_callback=dag_failure_sns_notification
     )
     a_il_test_fail_2 = PythonOperator(
         task_id="a_il_test_fail_2",
