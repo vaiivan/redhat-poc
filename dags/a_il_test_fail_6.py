@@ -12,7 +12,7 @@ def send_email_ses():
     # Initialize the Boto3 SES client with the retrieved credentials
     ses_client = boto3.client(
         'ses',
-        region_name='ap-east-1',
+        region_name='ap-southeast-1',
         aws_access_key_id=credentials.access_key,
         aws_secret_access_key=credentials.secret_key,
     )
