@@ -1,6 +1,6 @@
 from airflow import DAG
 from airflow.contrib.operators.kubernetes_pod_operator import KubernetesPodOperator
-
+from airflow.operators.empty import EmptyOperator
 from datetime import datetime, timedelta
 from textwrap import dedent
 
@@ -28,5 +28,6 @@ with DAG(
         task_id="test",
         get_logs=True,
     )
+    test2 = EmptyOperator(task_id="task2", on_success_callback=[dag_success_alert])
 
-    test
+    test >> test2
