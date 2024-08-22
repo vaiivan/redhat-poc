@@ -7,8 +7,9 @@ def send_email_ses():
     import boto3
     print('123')
     # Retrieve the AWS connection credentials
-    # aws_hook = AwsBaseHook(aws_conn_id='aws_connection', client_type='ses')
-    # credentials = aws_hook.get_credentials()
+    aws_hook = AwsBaseHook(aws_conn_id='aws_connection', client_type='ses')
+    credentials = aws_hook.get_credentials()
+    print(credentials)
     # ses = boto3.client(
     #     'ses',
     #     region_name='ap-east-1',
