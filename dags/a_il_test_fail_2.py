@@ -4,8 +4,8 @@ from airflow.operators.python_operator import PythonOperator
 from datetime import datetime, timedelta
 from textwrap import dedent
 
-def task_failure_alert(context):
-    print(f"sdasdsaTask has failed, task_instance_key_str: {context['task_instance_key_str']}")
+def task_failure_alert():
+    print(f"Task has failed, task_instance_key_str:---------------------")
 
 
 with DAG(
