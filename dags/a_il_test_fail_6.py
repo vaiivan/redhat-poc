@@ -21,7 +21,7 @@ def send_email_ses():
     response = ses_client.send_email(
         Source="ivan.lo@amidas.com.hk",
         Destination={
-            'ToAddresses': ["loyanngai@gmail.com"],
+            'ToAddresses': ["loyanngai@gmail.com","ivan.lo@amidas.com.hk"],
         },
         Message={
             'Subject': {
