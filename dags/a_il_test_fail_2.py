@@ -20,7 +20,7 @@ with DAG(
     #     # "email": ["ivan.lo@amidas.com.hk"]
     # },
     description="DAG testing for SES",
-    dagrun_timeout=datetime.timedelta(minutes=60),
+    # dagrun_timeout=datetime.timedelta(minutes=60),
     start_date=datetime(2021, 1, 1),
     catchup=False,
     on_failure_callback=task_failure_alert,
