@@ -5,7 +5,7 @@ from datetime import datetime, timedelta
 from textwrap import dedent
 
 def task_failure_alert(context):
-    print(f"Task has failed, task_instance_key_str: {context['task_instance_key_str']}")
+    print(f"sdasdsaTask has failed, task_instance_key_str: {context['task_instance_key_str']}")
 
 
 with DAG(
