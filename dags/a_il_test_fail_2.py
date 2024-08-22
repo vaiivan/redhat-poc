@@ -27,7 +27,8 @@ with DAG(
 ) as dag:
     a_il_test_fail_2 = PythonOperator(
         task_id="a_il_test_fail_2",
-        python_callable=lambda: 1 / 0
+        python_callable=lambda: 1 / 0,
+        on_failure_callback=task_failure_alert
     )
 
     a_il_test_fail_2
