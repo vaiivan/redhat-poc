@@ -1,7 +1,6 @@
 from airflow import DAG
 from airflow.operators.python_operator import PythonVirtualenvOperator
-from airflow.hooks.base import BaseHook
-from airflow.providers.amazon.aws.hooks.base_aws import AwsBaseHook
+from airflow.providers.amazon.aws.hooks.base_aws import AwsBaseHook  # Correct import
 from datetime import datetime
 
 def send_email_ses():
