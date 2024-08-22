@@ -12,7 +12,7 @@ def task_failure_alert(context):
     print(f"Task has failed, task_instance_key_str:---------------------")
 
 
-def dag_check_SNS(sns_topic_arn,context):
+def dag_check_SNS(sns_topic_arn,context: Context):
 
     sns = SnsPublishOperator(
         task_id="check_list",
