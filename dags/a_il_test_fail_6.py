@@ -45,7 +45,7 @@ with DAG(
     send_email_task = PythonVirtualenvOperator(
         task_id="send_email_ses",
         python_callable=send_email_ses,
-        requirements=["boto3"],
+        requirements=["boto3", "apache-airflow", "apache-airflow-providers-amazon"],
         system_site_packages=False,
     )
 
