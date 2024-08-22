@@ -15,9 +15,9 @@ with DAG(
         "retries": 0,
         "retry_delay": timedelta(minutes=5),
         "owner": "il",
-        "email_on_failure": True,
-        "email_on_retry": False,
-        "email": ["ivan.lo@amidas.com.hk"]
+        # "email_on_failure": True,
+        # "email_on_retry": False,
+        # "email": ["ivan.lo@amidas.com.hk"]
     },
     description="DAG testing for SES",
     start_date=datetime(2021, 1, 1),
