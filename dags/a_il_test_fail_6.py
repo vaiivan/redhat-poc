@@ -1,16 +1,25 @@
 from airflow import DAG
 from airflow.operators.python_operator import PythonVirtualenvOperator
-from airflow.operators.email_operator import EmailOperator
+from airflow.hooks.base import BaseHook
+from airflow.providers.amazon.aws.hooks.base_aws import AwsBaseHook
 from datetime import datetime
 
 def send_email_ses():
     import boto3
-    ses = boto3.client('ses', region_name='ap-east-1')
+    # Retrieve the AWS connection credentials
+    aws_hook = AwsBaseHook(aws_conn_id='aws_connection', client_type='ses')
+    credentials = aws_hook.get_credentials()
+    ses = boto3.client(
+        'ses',
+        region_name='ap-east-1',
+        aws_access_key_id=credentials.access_key,
+        aws_secret_access_key=credentials.secret_key,
+    )
     response = ses.send_email(
-        Source="ivan.lo@amidas.com.hk",
+        Source="your-verified-email@example.com",
         Destination={
             'ToAddresses': [
-                "loyanngai@hotmail.com",
+                "recipient@example.com",
             ],
         },
         Message={
@@ -27,7 +36,6 @@ def send_email_ses():
         }
     )
     print(response)
-
 
 with DAG(
     dag_id="a_il_test_fail_ses_virtualenv",
