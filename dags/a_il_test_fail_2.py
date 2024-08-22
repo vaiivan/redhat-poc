@@ -12,15 +12,15 @@ def task_failure_alert(context):
     print(f"Task has failed, task_instance_key_str:---------------------")
 
 
-def dag_check_SNS(sns_topic_arn):
+def dag_check_SNS(sns_topic_arn, context):
 
     sns = SnsPublishOperator(
         task_id="check_list",
         target_arn=sns_topic_arn,
-        subject="testing-subject",
+        subject=f"testing-subject{context['task_instance_key_str']}",
         message="testing-content",
     )
-    sns.execute()
+    sns.execute(context)
 
 
 with DAG(
