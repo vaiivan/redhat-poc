@@ -8,16 +8,11 @@ from airflow.operators.email_operator import EmailOperator
 from airflow.providers.amazon.aws.notifications.sns import send_sns_notification
 
 
-# Generate Environment Variable Name and Connection URI
-
-conn_uri = os.environ['conn_uri']
-print(f"env_key={conn_uri}")
-
 sns_topic_arn = "arn:aws:sns:ap-east-1:695314914535:airflow-sns-tpoic"
 
 
 dag_failure_sns_notification = send_sns_notification(
-    aws_conn_id=conn_uri,
+    aws_conn_id="aws_connection",
     region_name="ap-east-1",
     message="The DAG {{ dag.dag_id }} failed",
     target_arn=sns_topic_arn,
