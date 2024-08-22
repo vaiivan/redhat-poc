@@ -1,10 +1,10 @@
 from airflow import DAG
 from airflow.operators.python_operator import PythonVirtualenvOperator
-from airflow.providers.amazon.aws.hooks.base_aws import AwsBaseHook  # Correct import
 from datetime import datetime
 
 def send_email_ses():
     import boto3
+    from airflow.providers.amazon.aws.hooks.base_aws import AwsBaseHook  
     # Retrieve the AWS connection credentials
     aws_hook = AwsBaseHook(aws_conn_id='aws_connection', client_type='ses')
     credentials = aws_hook.get_credentials()
