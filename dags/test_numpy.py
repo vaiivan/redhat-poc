@@ -3,6 +3,7 @@ from airflow import DAG
 from airflow.operators.python_operator import PythonOperator
 from datetime import datetime, timedelta
 import numpy as np
+import pandas as pd
 
 def numpy_test():
     a = np.array([1, 2, 3, 4, 5, 6])
