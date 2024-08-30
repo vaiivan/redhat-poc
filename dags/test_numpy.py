@@ -2,7 +2,6 @@ import os
 from airflow import DAG
 from airflow.operators.python_operator import PythonOperator
 from datetime import datetime, timedelta
-from pyspark.sql import SparkSession
 import numpy as np
 
 def numpy_test():
