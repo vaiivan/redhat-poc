@@ -31,7 +31,7 @@ with DAG(
     catchup=False,
 ) as dag:
     a_il_test_numpy = PythonOperator(
-        task_id="a_il_test_spark",
+        task_id="a_il_test_numpy",
         python_callable=numpy_test,
         dag=dag,
     )
