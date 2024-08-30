@@ -5,11 +5,23 @@ from datetime import datetime, timedelta
 import numpy as np
 import pandas as pd
 
+
 def numpy_test():
     a = np.array([1, 2, 3, 4, 5, 6])
     print("------shape:------", a.shape)
     print("------type:------", type(a))
     print("------ndim:------", a.ndim)
+
+def pandas_test():
+    data = {
+      "calories": [420, 380, 390],
+      "duration": [50, 40, 45]
+    }
+
+    #load data into a DataFrame object:
+    df = pd.DataFrame(data)
+
+    print(df)
 
 
 with DAG(
@@ -24,4 +36,10 @@ with DAG(
         dag=dag,
     )
 
-    a_il_test_numpy
+    a_il_test_pandas = PythonOperator(
+        task_id="a_il_test_pandas",
+        python_callable=pandas_test,
+        dag=dag,
+    )
+
+    a_il_test_numpy >> a_il_test_pandas
